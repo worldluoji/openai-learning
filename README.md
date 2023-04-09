@@ -58,6 +58,9 @@ print(get_response(question))
 ```
 想要退出的时候，就在需要提问的时候，输入 “bye” 就好了。
 
+### example4: "2. sentiment analysis/good_or_bad.py""
+这个“给一个任务描述、给少数几个例子、给需要解决的问题”这样三个步骤的组合，也是大语言模型里使用提示语的常见套路。一般我们称之为 Few-Shots Learning（少样本学习），也就是给一个或者少数几个例子，AI 就能够举一反三，回答我们的问题。
+
 <br>
 
 ## Embedding
