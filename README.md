@@ -2,6 +2,16 @@
 OpenAI 就只提供了 Completion 和 Embedding 两个接口，
 其中，Completion 可以让模型根据你的输入进行自动续写，Embedding 可以将你输入的文本转化成向量。
 
+## preparation
+1. 更新pip
+```
+python3 -m pip install --upgrade pip
+```
+2. 安装依赖
+```
+pip install -r requirements.txt
+```
+
 ## Completion
 exapmle1: "1. hello/hello_openai.py"
 
