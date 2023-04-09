@@ -5,12 +5,13 @@ OpenAI 就只提供了 Completion 和 Embedding 两个接口，
 ## preparation
 1. 更新pip
 ```
-python3 -m pip install --upgrade pip
+python3 -m pip3 install --upgrade pip3
 ```
 2. 安装依赖
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
+The requirements.txt was created by command "pip3 freeze > requirements.txt"
 
 ## Completion
 Completion 这个接口里面的参数:
