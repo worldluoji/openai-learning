@@ -102,3 +102,34 @@ https://raw.githubusercontent.com/xuwenhao/geektime-ai-course/main/data/fine_foo
 In this text classification task, we predict the score of a food review (1 to 5) based on the embedding of the review's text. 
 
 reference: https://github.com/openai/openai-cookbook/blob/main/examples/Classification_using_embeddings.ipynb
+
+
+## ChatCompletion
+在 3 月 2 日，因为 ChatGPT 的火热，OpenAI 放出了一个直接可以进行对话聊天的接口。
+这个接口叫做 ChatCompletion，对应的模型叫做 gpt-3.5-turbo，不但用起来更容易了，速度还快，
+而且价格也是我们之前使用的 text-davinci-003 的十分之一，可谓是物美价廉了。
+```
+import openai
+openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Who won the world series in 2020?"},
+        {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+        {"role": "user", "content": "Where was it played?"}
+    ]
+)
+```
+Prompt 变成了一个数组，数组的每个元素都有 role 和 content 两个字段。
+- role 这个字段一共有三个角色可以选择，其中 system 代表系统，user 代表用户，而 assistant 则代表 AI 的回答。
+- 当 role 是 system 的时候，content 里面的内容代表我们给 AI 的一个指令，也就是告诉 AI 应该怎么回答用户的问题。比如我们希望 AI 都通过中文回答，我们就可以在 content 里面写“你是一个只会用中文回答问题的助理”，这样即使用户问的问题都是英文的，AI 的回复也都会是中文的。
+- 当 role 是 user 或者 assistant 的时候，content 里面的内容就代表用户和 AI 对话的内容。
+
+example3: -> "3. chat robot/conversation.py"
+
+值得注意的是，即使 ChatGPT 的接口是把对话分成了一个message数组，但是实际上，最终发送给模型的还是拼接到一起的字符串。
+OpenAI 在它的 Python 库里面提供了一个叫做 ChatML 的格式，其实就是 ChatGPT 的 API 的底层实现。
+OpenAI 实际做的，就是根据一个定义好特定分隔符的格式，将你提供的多轮对话的内容拼接在一起，提交给 gpt-3.5-turbo 这个模型。
+
+OpenAI 是通过模型处理的 Token 数量来收费的，但是要注意，这个收费是“双向收费”。
+它是按照你发送给它的上下文，加上它返回给你的内容的总 Token 数来计算花费的 Token 数量的。
