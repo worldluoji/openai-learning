@@ -74,7 +74,7 @@ print(get_response(question))
 通过大语言模型来进行情感分析，最简单的方式就是利用它提供的 Embedding 这个 API。
 这个 API 可以把任何你指定的一段文本，变成一个大语言模型下的向量，也就是用一组固定长度的参数来代表任何一段文本。
 
-example1: -> "2. sentiment analysis/comment_analysis.py"
+### example1: -> "2. sentiment analysis/comment_analysis.py"
 
 这个例子中，对于任何一段文本评论，我们都可以通过 API 拿到它的 Embedding。
 那么，把这段文本的 Embedding 和“好评”以及“差评”通过余弦距离（Cosine Similarity）计算出它的相似度。
@@ -82,3 +82,23 @@ example1: -> "2. sentiment analysis/comment_analysis.py"
 
 如果这个分数大于 0，那么说明我们的评论和“好评”的距离更近，我们就可以判断它为好评。
 如果这个分数小于 0，那么就是离差评更近，我们就可以判断它为差评。
+
+### 准确地预测出具体的分数
+我们把 5 个不同的分数分成了正面、负面和中性，还去掉了相对难以判断的“中性”评价，这样我们判断的准确率高的确是比较好实现的。
+但如果我们想要准确地预测出具体的分数呢？
+
+最简单的办法就是利用我们拿到的文本 Embedding 的向量。
+这一次，我们不直接用向量之间的距离，而是使用<strong>传统的机器学习的方法</strong>来进行分类。
+毕竟，如果只是用向量之间的距离作为衡量标准，就没办法最大化地利用已经标注好的分数信息了。
+
+数据集通过 datas/get_dataset_food.py获取，或者直接从 
+```
+https://raw.githubusercontent.com/xuwenhao/geektime-ai-course/main/data/fine_food_reviews_with_embeddings_1k.csv
+```
+下载
+
+### example2: -> "2. sentiment analysis/classification_using_embeddings.py
+通过embedding进行分类示例。
+In this text classification task, we predict the score of a food review (1 to 5) based on the embedding of the review's text. 
+
+reference: https://github.com/openai/openai-cookbook/blob/main/examples/Classification_using_embeddings.ipynb
