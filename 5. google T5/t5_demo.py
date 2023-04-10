@@ -2,7 +2,8 @@ from transformers import T5Tokenizer, T5Model
 import torch
 from openai.embeddings_utils import cosine_similarity
 
-# load the T5 tokenizer and model. 这段代码执行的过程可能会有点慢。因为第一次加载模型的时候，Transformer 库会把模型下载到本地并缓存起来，整个下载过程会花一些时间。
+# load the T5 tokenizer and model. try 't5-base' instead t5-small,  T5-Small 这个同样架构下的小模型，参数数量只有 6000 万个, t5-base🈶️2.2亿个。
+# 这段代码执行的过程可能会有点慢。因为第一次加载模型的时候，Transformer 库会把模型下载到本地并缓存起来，整个下载过程会花一些时间。
 tokenizer = T5Tokenizer.from_pretrained('t5-small', model_max_length=512)
 model = T5Model.from_pretrained('t5-small')
 # set the model to evaluation mode
