@@ -1,6 +1,7 @@
 # OpenAI API learning
 OpenAI 就只提供了 Completion 和 Embedding 两个接口，
-其中，Completion 可以让模型根据你的输入进行自动续写，Embedding 可以将你输入的文本转化成向量。
+- Completion 接口，一方面可以直接拿来作为一个聊天机器人，另一方面，你只要善用提示词，就能完成合理的文案撰写、文本摘要、机器翻译等一系列的工作。
+- Embedding 向量适合作为一个中间结果，用于传统的机器学习场景，比如分类、聚类。
 
 ## preparation
 1. 更新pip
