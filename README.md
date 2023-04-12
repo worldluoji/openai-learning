@@ -162,3 +162,9 @@ python3 ckmeans_news_group.py
 
 有了 OpenAI 的 Completion 接口，我们完全可以让 AI 给我们聚合出来的类起一个名字。
 我们可以随机在每个聚合出来的类里面，挑上 3～5 条，然后请 AI 总结一下该取什么名字，然后再挑一两条文本让 AI 给我们翻译成中文，看看名字取的是不是合理。
+
+<br>
+
+## 其它
+- 归纳总结： -> "3. chat robot/make_short.py"
+- 翻译: ->  "3. chat robot/translator.py"
