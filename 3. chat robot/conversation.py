@@ -40,7 +40,7 @@ class Conversation:
         self.messages.append({"role": "assistant", "content": message})
 
         if len(self.messages) > self.num_of_round * 2 + 1:
-            del self.messages[1: self.num_of_round + 1] # Remove the first round conversation left. 这里删除前一轮的下标为1: self.num_of_round+1
+            del self.messages[1: 3] # Remove the first round conversation left. 每次进来都会新增一条message, 这里删除前一轮的, 下标为1,2
         return message
 
 
