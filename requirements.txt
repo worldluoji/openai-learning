@@ -67,7 +67,6 @@ regex==2023.3.23
 requests==2.28.2
 scikit-learn==1.2.2
 scipy==1.10.1
-sentencepiece @ file:///Users/honorluo/Downloads/sentencepiece-0.1.97-cp39-abi3-macosx_10_9_x86_64.whl
 SimpleWebSocketServer==0.1.1
 six==1.16.0
 sklearn==0.0.post1
@@ -91,3 +90,4 @@ ushlex==0.99.1
 wcwidth==0.2.6
 webencodings==0.5.1
 yarl==1.8.2
+sentencepiece @ file:///Users/honorluo/Downloads/sentencepiece-0.1.97-cp39-abi3-macosx_10_9_x86_64.whl
