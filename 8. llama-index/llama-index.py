@@ -2,6 +2,7 @@
 import openai, os
 from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader
 
+# llama-index 默认使用的模型是 text-davinci-003，价格比 gpt-3.5-turbo 要贵上十倍
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 TARGET_PATH = './index_tyxs.json'

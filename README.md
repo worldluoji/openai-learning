@@ -7,6 +7,7 @@ OpenAI 就只提供了 Completion 和 Embedding 两个接口，
 1. 更新pip
 ```
 python3 -m pip install --upgrade pip
+python3 -m spacy download zh_core_web_sm
 ```
 2. 设置pip镜像(optional)
 ```
