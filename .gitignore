@@ -2,3 +2,4 @@
 *.parquet
 *.DS_Store
 index_tyxs.json
+*.pyc
