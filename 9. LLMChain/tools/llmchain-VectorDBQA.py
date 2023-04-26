@@ -7,7 +7,7 @@ from langchain.document_loaders import TextLoader
 
 llm = OpenAI(temperature=0)
 # 通过一个 TextLoader 把文件加载进来，还通过 SpacyTextSplitter 给文本分段，确保每个分出来的 Document 都是一个完整的句子
-loader = TextLoader('./data/ecommerce_faq.txt')
+loader = TextLoader('../data/ecommerce_faq.txt')
 documents = loader.load()
 text_splitter = SpacyTextSplitter(chunk_size=256, pipeline="zh_core_web_sm")
 texts = text_splitter.split_documents(documents)
