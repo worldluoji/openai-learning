@@ -33,6 +33,7 @@ product_texts = product_text_splitter.split_documents(product_documents)
 product_search = FAISS.from_documents(product_texts, OpenAIEmbeddings())
 product_chain = VectorDBQA.from_chain_type(llm=llm, vectorstore=product_search, verbose=True)
 
+@tool("Recommend Product")
 def recommend_product(input: str) -> str:
     """"useful for when you need to search and recommend products and recommend it to the user"""
     return product_chain.run(input)
@@ -45,9 +46,7 @@ tools = [
         name = "Search Order",func=search_order, 
         description="useful for when you need to answer questions about customers orders"
     ),
-    Tool(name="Recommend Product", func=recommend_product, 
-         description="useful for when you need to answer questions about product recommendations"
-    ),
+    recommend_product,
     faq
 ]
 
