@@ -5,7 +5,9 @@ document = Document()
 
 document.add_heading('Document Title', 0)
 
+# 为word文件创建一个新段落
 p = document.add_paragraph('A plain paragraph having some ')
+# 将内容写入到文本段落中
 p.add_run('bold').bold = True
 p.add_run(' and some ')
 p.add_run('italic.').italic = True
