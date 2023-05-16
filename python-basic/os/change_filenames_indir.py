@@ -6,7 +6,7 @@ import time
 '''
 重命名为随机值 + 时间戳
 '''
-def newName():
+def new_name():
     randomList = random.sample('zyxwvutsrqponmlkjihgfedcba_', 6)
     s = ''.join(randomList)
     return s + str(time.time())
@@ -28,7 +28,7 @@ def rename(file_path, ext):
             old_path = os.path.join(file_path, old_name)
 
             # 新的文件名
-            new_path = os.path.join(file_path, newName() + ext)
+            new_path = os.path.join(file_path, new_name() + ext)
         
             # 重命名
             os.rename(old_path, new_path)
