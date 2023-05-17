@@ -34,3 +34,6 @@ def func():
 ```
 func = decorator(arg1,arg2)(func)
 ```
+被 decorator 的函数其实已经是另外一个函数了，
+对于 hello.py 的例子来说，如果你查询一下 foo.__name__ 的话，你会发现其输出的是 “wrapper”，而不是我们期望的 “foo”,这会给我们的程序埋一些坑。
+所以，Python 的 functool 包中提供了一个叫 wrap 的 decorator 来消除这样的副作用 -> hello_new.py
