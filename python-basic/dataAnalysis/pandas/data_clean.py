@@ -4,7 +4,7 @@ import pandas as pd
 pd.set_option('display.unicode.east_asian_width', True)
 
 #读取excel,sheet_name指定excel的第几个sheet页，默认0
-df = pd.read_excel('D:\\python\\dataAnalysis\\pandas\\test.xlsx', sheet_name=1)
+df = pd.read_excel('./test.xlsx', sheet_name=1)
 
 print(df.head())
 
@@ -17,6 +17,7 @@ print(df.isnull())
 print('*' * 8 + '丢弃存在NA的行——缺失值删除处理:')
 df1 = df.dropna()
 print(df1)
+
 print('*' * 8 + '指定项缺失删除,通过reset_index重置索引：')
 df2 = df[df['BOSS'].notnull()].reset_index(drop=True)
 print(df2)

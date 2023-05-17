@@ -4,7 +4,7 @@ import pandas as pd
 pd.set_option('display.unicode.east_asian_width', True)
 
 #读取excel,sheet_name指定excel的第几个sheet页，默认0
-df = pd.read_excel('D:\\python\\dataAnalysis\\pandas\\test.xlsx', sheet_name=1)
+df = pd.read_excel('./test.xlsx', sheet_name=1)
 
 print(df.head())
 

@@ -16,13 +16,14 @@ print('*' * 16)
 df.insert(1, '生物', [66,77,88])
 print(df)
 print('*' * 16)
+
 #增加一行
 df.loc['钱多多'] = [33,22,44,55,66]
 print(df)
 #批量增加
 df_insert = pd.DataFrame({'语文':[90,80],'数学':[90,88],'英语':[89,99],'物理':[78,88],'生物':[97,88]}
                         ,index=['渣渣灰','渣渣非'])
-df1 = df.append(df_insert)
+df1 = df._append(df_insert)
 print(df1)
 print('*' * 16)
 
@@ -30,7 +31,7 @@ print('*' * 16)
 df.rename(columns={'语文':'语文（三年级）'}, inplace=True)
 print(df)
 #修改行名
-df.rename({'王麻子':'王梅梅'},axis=0,inplace=True)
+df.rename({'王麻子':'王梅梅'}, axis=0, inplace=True)
 print(df)
 print('*' * 16)
 
