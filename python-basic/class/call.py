@@ -20,3 +20,5 @@ for i in range(10):
     foo()
 
 print(foo.count) 
+
+# examples: https://stackoverflow.com/questions/5824881/python-call-special-method-practical-example
