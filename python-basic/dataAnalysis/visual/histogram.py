@@ -13,6 +13,7 @@ print(s)
 # 用Matplotlib画直方图
 plt.hist(s)
 plt.show()
+
 '''
 在 Matplotlib 中，我们使用 plt.hist(x, bins=10) 函数，
 其中参数 x 是一维数组，bins 代表直方图中的箱子数量，默认是 10。

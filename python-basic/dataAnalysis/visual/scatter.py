@@ -13,5 +13,5 @@ plt.show()
 
 # 用Seaborn画散点图
 df = pd.DataFrame({'x': x, 'y': y})
-sns.jointplot(x="x", y="y", data=df, kind='scatter');
+sns.jointplot(x="x", y="y", data=df, kind='scatter')
 plt.show()

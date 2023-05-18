@@ -10,8 +10,8 @@ y = [5, 3, 6, 20, 17, 16, 19, 30, 32, 35]
 # 使用Matplotlib画折线图
 plt.plot(x, y)
 plt.show()
-# 使用Seaborn画折线图
 
+# 使用Seaborn画折线图
 df = pd.DataFrame({'x': x, 'y': y})
 sns.lineplot(x="x", y="y", data=df)
 plt.show()
