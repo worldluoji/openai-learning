@@ -22,3 +22,8 @@ def insert_text(prefix, suffix):
 
 response = insert_text(prefix, suffix)
 print(response["choices"][0]["text"])
+
+'''
+实际会根据prefix和suffix给出一段话，介于prefix和suffix之间,比如：
+另一些是内部因素，例如事业难以发展、无法解决的个人和家庭矛盾等。
+'''
