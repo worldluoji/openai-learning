@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask App</title>
+</head>
+<body>
+    <h1>Welcome to the Flask App</h1>
+    {% if user %}
+    <p>Hello, {{ user }}!</p >
+    <p><a href="/logout">Logout</a ></p >
+    {% else %}
+    <p>Please <a href="/login">login</a > to access more features.</p >
+    {% endif %}
+</body>
+</html>
