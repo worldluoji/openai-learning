@@ -76,7 +76,7 @@ print(get_response(question))
 通过大语言模型来进行情感分析，最简单的方式就是利用它提供的 Embedding 这个 API。
 这个 API 可以把任何你指定的一段文本，变成一个大语言模型下的向量，也就是用一组固定长度的参数来代表任何一段文本。
 
-### example1: -> "2. sentiment analysis/comment_analysis.py"
+### example1: -> "2. Embedding/comment_analysis.py"
 
 这个例子中，对于任何一段文本评论，我们都可以通过 API 拿到它的 Embedding。
 那么，把这段文本的 Embedding 和“好评”以及“差评”通过余弦距离（Cosine Similarity）计算出它的相似度。
