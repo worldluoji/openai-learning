@@ -20,11 +20,15 @@ OpenAI 专门提供了一个 moderate 接口，可以让你对输入以及返回
 如果出现了不健康的内容，你也可以屏蔽这些用户的访问，也可以人工审核一下用户的问题。
 -> "6. moderate"
 
-5. LLMChain
+5. llama-index
+通过llama-index ，将外部的资料库索引入后进行问答
+-> 8. llama-index
+
+6. LLMChain
 通过 Langchain 这个开源库，对大语言模型进行链式调用 
 -> 9. LLMChain
 
-6. openai有哪些engine?
+7. openai有哪些engine?
 -> openai-engines
 
 ## preparation
