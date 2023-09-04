@@ -1,6 +1,6 @@
 
 import openai, os
-from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader
+from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader, QuestionAnswerPrompt
 
 # llama-index 默认使用的模型是 text-davinci-003，价格比 gpt-3.5-turbo 要贵上十倍
 openai.api_key = os.environ.get("OPENAI_API_KEY")
@@ -25,7 +25,6 @@ print(response)
 
 
 # 上述过程里面是如何提交给 OpenAI 的呢？
-from llama_index import QuestionAnswerPrompt
 query_str = "鲁迅先生去哪里学的医学？"
 
 # 模版里面支持两个变量，一个叫做 context_str，另一个叫做 query_str。context_str 的地方，在实际调用的时候，会被通过 Embedding 相似度找出来的内容填入。而 query_str 则是会被我们实际提的问题替换掉。
