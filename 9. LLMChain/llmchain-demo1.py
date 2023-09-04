@@ -2,7 +2,7 @@
 import openai, os
 from langchain.prompts import PromptTemplate
 from langchain.llms import OpenAI
-from langchain.chains import LLMChain
+from langchain.chains import LLMChain, SimpleSequentialChain
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
@@ -35,8 +35,6 @@ answer_translate_chain = LLMChain(llm=llm, prompt=en_to_cn_prompt)
 # answer = answer_translate_chain.run(english_answer=english_answer)
 # print(answer)
 
-
-from langchain.chains import SimpleSequentialChain
 
 # 这个 LLMChain 会自动地链式搞定
 chinese_qa_chain = SimpleSequentialChain(
