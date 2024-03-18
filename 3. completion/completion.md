@@ -14,6 +14,12 @@ Completion 这个接口里面的参数:
 
 这个参数该怎么设置，取决于实际使用的场景。如果对应的场景比较严肃，不希望出现差错，那么设得低一点比较合适，比如银行客服的场景。如果场景没那么严肃，有趣更加重要，比如讲笑话的机器人，那么就可以设置得高一些。
 
+注意：
+```
+Temperature 作为一个参数，其实是决定了我们在 AI 大模型生成下一个 Token 的候选列表的时候，高概率的 Token 被选中的概率的分布是更大还是更小。
+即使 Temperature 设置成 0，也并不意味着模型的输出是一样的。
+```
+
 <br>
 
 ### -> food_chatbot.py
@@ -123,3 +129,42 @@ print(get_json_response(prompt))
 这个小技巧有助于最终输出的 JSON 格式和你期望的一样，确保后续程序的解析成功。
 如果对比一下这里给出了 JSON 格式例子代码的输出结果和上面没有给例子的输出结果，你会发现，JSON 中对应价格区间的字段 price_range 的输出格式，一个是用了下划线 _ 作为单词之间的分割，而另一个则是用了驼峰格式的 priceRange。
 如果你的解析代码中，希望使用 price_range，那么在原来的输出结果里是获取不到的。
+
+<br>
+
+## 如何保证输出结果尽量一致
+```
+def get_fingerprint_response(prompt, seed=42, model=CHAT_COMPLETION_MODEL):
+    messages = [
+        {"role" : "system", "content" : "You are an useful AI asssitant."},
+        {"role" : "user", "content": prompt}
+    ]
+    response = client.chat.completions.create (
+        model=model,
+        messages=messages,
+        max_tokens=512,
+        n=1,
+        stop=None,
+        seed=seed,
+        temperature=0, 
+        response_format={ "type": "json_object" },      
+    )
+    message = response.choices[0].message.content
+    fingerpring = response.system_fingerprint
+    return fingerpring, message
+
+fingerprint , json_response = get_fingerprint_response(prompt,seed=1)
+print(fingerprint)
+print(json_response)
+```
+尽管 temperature 已经设置成了 0，但是不同 seed 输出的结果还是不同的。
+
+为了尽可能地确保每次的输出结果一样，你还需要指定一个 seed 参数。这个 seed 参数是一个随机数的种子。
+如果你指定了相同的 seed 参数，把 temperature 设置成 0，并且确保调用模型的其他参数和提示语完全一致。
+那么，OpenAI 的输出结果，就会尽可能地一致。
+
+不过，需要注意，OpenAI 在官方文档中，也申明了即使 seed 一致，<strong>它也只是尽可能保障输出结果是一致的，而没有打上 100% 的保票</strong>。
+
+如果你希望通过相同的 seed 参数来保障输出结果是可以反复重现（Reproducible）的，我也推荐你和我一样，把输出结果中的 system_fingerprint 参数单拎出来。
+这个参数，是针对你调用模型的各个参数组合的指纹，如果这个值在两次 AI 模型调用中不一样，就意味着你一定有一些参数在两次调用中是不同的。
+这个时候，输出的结果不一致是正常现象，并不能说明你的 seed 参数不一样。
