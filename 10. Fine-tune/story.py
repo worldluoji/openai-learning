@@ -10,7 +10,7 @@ story_types = ['轻松', '努力', '艰难']
 @backoff.on_exception(backoff.expo, openai.error.RateLimitError)
 def gpt35(prompt, max_tokens=2048, temperature=0.5, top_p=1, frequency_penalty=0, presence_penalty=0):
     response = openai.Completion.create(
-        engine="text-davinci-003",
+        engine="gpt-3.5-turbo-instruct",
         prompt=prompt,
         max_tokens=max_tokens,
         temperature=temperature,
@@ -51,11 +51,19 @@ prepared_data.to_csv('data/prepared_data.csv', index=False)
 
 import subprocess
 
-# 通过 subprocess 调用了命令行里的 OpenAI 工具，把上面的 CSV 文件，转化成了一个 JSONL 格式的文件
+'''
+通过 subprocess 调用了命令行里的 OpenAI 工具，把上面的 CSV 文件，转化成了一个 JSONL 格式的文件, 内容如下:
+{"prompt":"唐,隐形,轻松 ->","completion":" \n\n一位叫做李明的英雄人物，出生在唐朝时期。他是一个勇敢的将军，在他的一生中，他打败了许多敌人，为自己的国家和人民做出了许多贡献。\n\n一天，李明意外被一道神秘的光束穿越到了现代。他发现自己拥有了超能力，可以隐形，可以飞行，可以发射光束，可以放出火焰，可以穿墙而过等等。\n\n李明发现，在现代，怪兽们正在摧毁地球，他决定和奥特曼一起，用自己的超能力，帮助奥特曼消灭怪兽们。\n\n于是，李明和奥特曼开始了一场艰苦的战斗，他们用自己的超能力，一招一式，击退了怪兽们，最终成功地拯救了地球。\n\n在这场战斗之后，地球上的人们都对李明充满了敬佩，他从此成为了一位英雄，他的事迹也被传颂了很久。李明也因此被永远铭记在人们心中，成为了一位不朽的英雄。."}
+{"prompt":"唐,隐形,轻松 ->","completion":" \n\n这是一个关于英雄的故事，发生在唐朝时期的中国。一个叫李自成的勇士，他拥有过人的勇气，英勇的行为让他成为当时最受尊敬的人物。\n\n一天，李自成被一道神秘的光芒笼罩住，他突然发现自己似乎穿越时空，来到了现代。他惊讶地发现，自己竟然拥有了一种超能力，可以让自己隐形。\n\n李自成接受了这种超能力，他发现这种能力可以让自己变得更加强大，他决定利用这种能力来帮助人们。\n\n一次，李自成发现有一群怪兽正在破坏城市，他决定和奥特曼一起出动，利用自己的超能力，把怪兽一个个击败，最终成功拯救了城市，令众人欢呼雀跃。\n\n自此，李自成受到了众人的尊敬，他成为了这个城市的英雄，他也把自己的超能力用在了正义的事业上，为人们做出了许多贡献，他也成为了一个英雄。."}
+
+转换后的数据文件，在 Prompt 的最后，多了一个“->”符号。而在 Completion 的开头，多了两个“\n\n”的换行，结尾则是多了一个“.”。
+这是为了方便我们后续在使用这个模型生成数据的时候，控制生成结果。未来在使用模型的时候，Prompt 需要以“->\n”这个提示符结束，并且将 stop 设置成“.”。
+这样，模型就会自然套用我们微调里的模式来生成文本。
+'''
 subprocess.run('openai tools fine_tunes.prepare_data --file data/prepared_data.csv --quiet'.split())
 
 # 通过 subprocess 调用 OpenAI 的命令行工具，来提交微调的指令
-# 在这个微调的指令里面，我们指定了三个参数，分别是用来训练的数据文件、一个基础模型，以及生成模型的后缀。
+# 在这个微调的指令里面，我们指定了三个参数，分别是用来训练的数据文件prepared_data_prepared.jsonl、一个基础模型curie，以及生成模型的后缀ultraman。
 subprocess.run('openai api fine_tunes.create --training_file data/prepared_data_prepared.jsonl --model curie --suffix "ultraman"'.split())
 
 # 通过下面的 fine_tunes.list 指令，找出所有我们微调的模型
