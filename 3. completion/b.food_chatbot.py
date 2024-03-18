@@ -6,7 +6,7 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 
 def ask_gpt3(prompt):
     response = openai.Completion.create(
-        engine="text-davinci-003",
+        engine="gpt-3.5-turbo-instruct",
         prompt=prompt,
         max_tokens=512,
         n=1,

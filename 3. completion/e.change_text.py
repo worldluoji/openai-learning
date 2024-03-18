@@ -13,7 +13,7 @@ suffix = """\n面对这些挑战和困难，我们需要采取积极的态度和
 
 def insert_text(prefix, suffix):
     response = openai.Completion.create(
-        model="text-davinci-003",
+        model="gpt-3.5-turbo-instruct",
         prompt=prefix,
         suffix=suffix,
         max_tokens=1024,

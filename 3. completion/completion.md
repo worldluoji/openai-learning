@@ -69,3 +69,57 @@ Prompt 变成了一个数组，数组的每个元素都有 role 和 content 两�
 2. 翻译: -> d.translator.py
 3. 文本改写: -> e.chang_text.py  text-davinci-003 这个模型有个特殊的功能，就是“插入文本”（Inserting Text）。某种意义上来说，你也可以通过这个功能来做文本改写。
 4. Conversation -> f.conversation.py
+
+<br>
+
+## JSON格式返回
+```
+CHAT_COMPLETION_MODEL = "gpt-3.5-turbo-0125"
+def get_json_response(prompt, model=CHAT_COMPLETION_MODEL):
+    messages = [
+        {"role" : "system", "content" : "You are an useful AI asssitant."},
+        {"role" : "user", "content": prompt}
+    ]
+    response = client.chat.completions.create (
+        model=model,
+        messages=messages,
+        max_tokens=512,
+        n=1,
+        stop=None,
+        temperature=0.7, 
+        response_format={ "type": "json_object" },      
+    )
+    message = response.choices[0].message.content
+    return message
+
+prompt = """
+Hi,
+
+Could you write me a title, 5 selling points, and a price range for a product called "工厂现货PVC充气青蛙夜市地摊热卖充气玩具发光蛙儿童水上玩具" in English in json format?
+
+The json format should be like this:
+
+{
+    "title": "Blablabla",
+    "selling_points": [
+        "Blablabla",
+        "Blablabla",
+        "Blablabla",
+        "Blablabla",
+        "Blablabla"
+    ],
+    "price_range": "$x.00 - $y.00"
+}
+
+"""
+
+print(get_json_response(prompt)) 
+```
+首先，只有在使用 gpt-4-turbo-preview 或者 gpt-3.5-turbo-0125 这两个模型的时候，OpenAI 的 API 才支持指定 JSON 作为输出格式。所以你要先把使用的模型换成这两个模型中的一个。
+
+然后，你只需要在 Chat Completions 接口中，增加一个参数，指定 response_format={ “type”: “json_object” } 就好了。
+
+除了这两处修改之外，为了确保输出的 JSON 格式和你期望的一样。建议在原来的 Prompt 的最后，再给出一个你期望的 JSON 格式的例子。
+这个小技巧有助于最终输出的 JSON 格式和你期望的一样，确保后续程序的解析成功。
+如果对比一下这里给出了 JSON 格式例子代码的输出结果和上面没有给例子的输出结果，你会发现，JSON 中对应价格区间的字段 price_range 的输出格式，一个是用了下划线 _ 作为单词之间的分割，而另一个则是用了驼峰格式的 priceRange。
+如果你的解析代码中，希望使用 price_range，那么在原来的输出结果里是获取不到的。
