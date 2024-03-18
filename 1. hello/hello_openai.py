@@ -3,7 +3,9 @@ import openai
 import os
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
-COMPLETION_MODEL = "text-davinci-003"
+# COMPLETION_MODEL = "text-davinci-003" 该模型已废弃
+
+COMPLETION_MODEL = "gpt-3.5-turbo-instruct"
 
 prompt = """
 Consideration proudct : 工厂现货PVC充气青蛙夜市地摊热卖充气玩具发光蛙儿童水上玩具

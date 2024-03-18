@@ -6,6 +6,10 @@ Completion 接口，一方面可以直接拿来作为一个聊天机器人，
 另一方面，你只要善用提示词，就能完成合理的文案撰写、文本摘要、机器翻译等一系列的工作。
 -> 3. completion
 
+如果你想写一些新功能和新代码，建议不要再使用上面的 Completions API 了，因为这一系列的 API 已经被 OpenAI 打上了“Legacy”的标记。而且，OpenAI 也没有为 GPT-4 这个最强大模型，提供 Completions API。
+
+如果今天你想要实现让 GPT 给你写文案和标题的能力，我推荐你使用 Chat Completions 接口，你只需要把你的指令需求替换成一个用户通过 chat 对话向 AI 发出请求的方式就可以了。
+
 ## 2. Embedding
 Embedding 向量适合作为一个中间结果，用于传统的机器学习场景，比如分类、聚类。
 -> 2. embedding
