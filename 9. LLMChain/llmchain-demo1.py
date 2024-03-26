@@ -7,7 +7,7 @@ from langchain.chains import LLMChain, SimpleSequentialChain
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # LLM，也就是我们使用哪个大语言模型，来回答我们提出的问题。在这里，我们还是使用 OpenAIChat，也就是 gpt-3.5-turbo 模型。
-llm = OpenAI(model_name="text-davinci-003", max_tokens=2048, temperature=0.5)
+llm = OpenAI(model_name="gpt-3.5-turbo-instruct", max_tokens=2048, temperature=0.5)
 
 # PromptTemplate 可以定义一个提示语模版，里面能够定义一些可以动态替换的变量。比如这个模版里，我们就定义了一个叫做 question 的变量，因为我们每次问的问题都会不一样
 en_to_zh_prompt = PromptTemplate(

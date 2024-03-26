@@ -6,7 +6,7 @@ from langchain.chains import LLMChain, SequentialChain
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
-llm = OpenAI(model_name="text-davinci-003", max_tokens=2048, temperature=0.5)
+llm = OpenAI(model_name="gpt-3.5-turbo-instruct", max_tokens=2048, temperature=0.5)
 
 q1_prompt = PromptTemplate(
     input_variables=["year1"],
