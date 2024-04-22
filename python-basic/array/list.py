@@ -20,3 +20,8 @@ print(l, l.count(1))
 
 l.pop()
 print(l)
+
+l.append(0)
+
+l.sort(reverse=True)
+print(l)
