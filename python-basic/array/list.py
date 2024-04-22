@@ -16,4 +16,7 @@ finally:
 
 l = [1,1,2,2]
 l.remove(1)
+print(l, l.count(1))
+
+l.pop()
 print(l)
