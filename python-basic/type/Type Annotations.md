@@ -9,6 +9,10 @@
 ```
 def add(a: int, b: int) -> int:
     return a + b
+
+# 二维int数组
+def longestLine(mat: List[List[int]]) -> int:
+    return mat[0][1] + mat[1][0]
 ```
 
 类似于typescript.
