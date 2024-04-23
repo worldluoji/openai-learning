@@ -85,3 +85,57 @@ except ValueError as e:
 而 `__next__ `方法在每次调用时返回下一个元素。当没有更多元素时，`__next__` 方法应抛出 StopIteration 异常。
 
 [demo](./it.py)
+
+
+<br>
+
+## GeneratorExit
+生成器是 Python 中一种特殊的迭代器，由包含 `yield` 表达式的函数定义。生成器函数在被调用时不执行任何代码，而是返回一个生成器对象。当对这个生成器对象进行迭代或调用其 `__next__` 方法时，函数体才会开始执行，直到遇到 `yield` 表达式暂停并返回值。下一次迭代时，从上次暂停的地方继续执行。
+
+以下是生成器的一个简单示例：
+
+```python
+def count_to(n):
+    for i in range(1, n+1):
+        yield i
+
+gen = count_to(5)
+
+for num in gen:
+    print(num)
+```
+
+`GeneratorExit` 是 Python 中的一个特殊异常类型，它用于通知生成器（generator）其生命周期即将结束，通常发生在以下几种情况：
+
+1. **`generator.close()` 方法被调用**：当程序明确要求关闭一个生成器时，可以调用其 `close()` 方法。这会导致 Python 解释器向生成器发送一个 `GeneratorExit` 异常。生成器内部应当捕获并处理这个异常，执行任何必要的清理操作，然后退出。
+
+   ```python
+   gen = (i for i in range(10))
+   gen.close()  # 调用 close() 触发 GeneratorExit
+   ```
+
+2. **生成器对象被垃圾回收**：如果一个生成器对象不再被引用，它可能会在某个时间点被垃圾回收。在回收过程中，Python 也会向生成器发送 `GeneratorExit` 异常，以确保即使在没有显式关闭的情况下，生成器也能有机会清理资源。
+
+3. **使用 `with` 语句管理生成器**：尽管生成器本身并不直接实现上下文管理协议（即 `__enter__()` 和 `__exit__()` 方法），但如果生成器对象被嵌套在 `with` 语句中，当 `with` 块结束时，Python 会尝试关闭生成器，从而触发 `GeneratorExit`。这种情况下，通常是因为生成器被封装在一个实现了上下文管理协议的对象中。
+
+当 `GeneratorExit` 被发送到生成器时，生成器应该捕获并处理这个异常，而不是让其向上冒泡。通常，处理方式是执行必要的清理工作，然后通过 `return` 或 `raise StopIteration` 优雅地退出。如果不捕获 `GeneratorExit` 或者在捕获后再次引发它，Python 会抛出一个 `RuntimeError`，指出生成器没有正确处理 `GeneratorExit`。
+
+下面是一个简单的示例，展示了如何在生成器中处理 `GeneratorExit`：
+
+```python
+def my_generator():
+    try:
+        while True:
+            yield 1
+    except GeneratorExit:
+        print("Generator is being closed.")
+        # 执行清理工作，如关闭文件、释放锁等
+        return  # 或 raise StopIteration
+
+gen = my_generator()
+next(gen)  # 使用生成器
+gen.close()  # 触发 GeneratorExit，打印消息并清理
+```
+
+总结来说，`GeneratorExit` 是用来通知生成器其生命周期即将结束的一种异常类型，主要在生成器被显式关闭或即将被垃圾回收时出现。
+生成器应当妥善处理此异常以确保资源得到恰当的清理。
