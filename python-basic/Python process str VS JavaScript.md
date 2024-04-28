@@ -25,3 +25,11 @@
 |  | `rstrip([chars])` | 移除右侧空白字符（默认）或指定字符序列。 | `trimEnd()` | 移除字符串右侧的空白字符。 |
 
 表格清晰地展示了 Python 3 和 JavaScript 字符串操作方法的功能、描述及对应关系，方便比较和查阅。
+
+## 字符串反转
+利用Python字符串的切片功能，可以非常简洁地实现倒转。
+```
+text = "Hello, World!"
+reversed_text = text[::-1]
+print(reversed_text)
+```
