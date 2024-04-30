@@ -47,3 +47,42 @@ assert False == 0  # True
 assert True is not 1  # True
 assert False is not 0  # True
 ```
+
+<br>
+
+## Optional
+在Python中，`Optional`是一个类型提示（type hint），用来指示一个变量、函数参数或返回值可以是某种类型，也可以是`None`。
+这在类型注解中非常有用，因为它帮助开发者和阅读代码的人明确了解某个变量是否可能为`None`，从而可以在使用之前做出适当的检查，避免运行时错误。
+
+`Optional`是`typing`模块中的一个类型别名，自Python 3.5引入`typing`模块以来，它就被用来增强代码的可读性和健壮性。使用`Optional`的方式如下：
+
+首先，需要从`typing`模块导入`Optional`：
+
+```python
+from typing import Optional
+```
+
+然后，你可以在类型注解中使用它：
+
+```python
+def find_item(lst: list, value: int) -> Optional[int]:
+    """查找列表中指定值的索引，如果找不到则返回None"""
+    for index, element in enumerate(lst):
+        if element == value:
+            return index
+    return None
+```
+
+在这个例子中，`find_item`函数的返回类型被标记为`Optional[int]`，这意味着它可能返回一个整数（找到了指定值的索引），也可能返回`None`（如果没有找到该值）。
+
+此外，如果你使用的是Python 3.10或更高版本，还可以直接使用类型联合（Union）来达到类似的效果，因为`Optional[T]`本质上等同于`Union[T, NoneType]`：
+
+```python
+def find_item_v2(lst: list[int], value: int) -> int | None:  # 使用Python 3.10的类型联合语法
+    for index, element in enumerate(lst):
+        if element == value:
+            return index
+    return None
+```
+
+两种方式都表达了同样的类型信息，但后者在语法上更加简洁直观，特别是对于熟悉Python较新版本特性的开发者来说。
