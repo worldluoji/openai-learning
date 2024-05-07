@@ -25,3 +25,8 @@ l.append(0)
 
 l.sort(reverse=True)
 print(l)
+
+a1 = [1,2]
+a2 = [1,2]
+print(a1 == a2)
+# True
