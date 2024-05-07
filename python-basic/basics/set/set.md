@@ -63,3 +63,19 @@ Python中的`set`类型是一种无序且不包含重复元素的集合数据结
 - **可迭代**：尽管没有顺序，集合仍然是可迭代的，可以用于循环遍历。
 
 这些特性使得`set`类型非常适合用于去重、集合运算以及检查成员资格等场景。
+
+<br>
+
+## 注意
+```
+>>> s.add([1,2])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'list'
+
+>>> s.add({1,2})
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'set'
+```
+list和set都是不能被hash的，因此加不到set里
