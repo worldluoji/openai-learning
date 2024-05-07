@@ -13,6 +13,16 @@ def add(a: int, b: int) -> int:
 # 二维int数组
 def longestLine(mat: List[List[int]]) -> int:
     return mat[0][1] + mat[1][0]
+
+# set
+def get_unique_integers(items: List[int]) -> Set[int]:
+    """
+    Given a list of integers, this function returns a set of unique integers.
+    
+    :param items: A list of integers that may contain duplicates.
+    :return: A set of unique integers from the input list.
+    """
+    return set(items)
 ```
 
 类似于typescript.
