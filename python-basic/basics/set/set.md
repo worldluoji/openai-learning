@@ -79,3 +79,42 @@ Traceback (most recent call last):
 TypeError: unhashable type: 'set'
 ```
 list和set都是不能被hash的，因此加不到set里
+
+由于Python的列表（list）是可变的，它们不是哈希able的，这意味着你不能直接对列表使用内置的`hash()`函数。但是，如果你确实需要获得一个列表内容的哈希值，你可以通过将列表转换为一个可哈希的数据结构，比如元组（tuple）或者将列表的内容连接成一个字符串，然后再求哈希值。
+
+### 转换为元组求哈希
+
+将列表转换为元组，因为元组是不可变的，所以可以被哈希：
+
+```python
+my_list = [1, 2, 3]
+my_tuple = tuple(my_list)
+hash_value = hash(my_tuple)
+print(hash_value)
+```
+
+### 列表内容连接成字符串求哈希
+
+将列表的每个元素转换为字符串，并连接起来形成一个单独的字符串，然后求这个字符串的哈希值：
+
+```python
+my_list = ['a', 'b', 'c']
+str_concatenated = ''.join(map(str, my_list))  # 将列表所有元素转换为字符串并连接
+hash_value = hash(str_concatenated)
+print(hash_value)
+```
+
+或者，如果你想保持元素之间的区分度且列表中包含非字符串类型，可以使用其他分隔符：
+
+```python
+my_list = [1, 2, 3]
+str_with_separator = '|'.join(map(str, my_list))  # 使用分隔符连接
+hash_value = hash(str_with_separator)
+print(hash_value)
+```
+
+### 注意事项
+
+- 上述方法中，列表的内容或顺序改变会导致最终的哈希值不同。
+- 如果列表非常大或包含大量复杂对象，转换和哈希的过程可能会消耗较多资源。
+- 当列表中包含不可哈希类型的元素（如列表、字典）时，上述方法同样不适用，需要进一步转换或处理这些元素。
