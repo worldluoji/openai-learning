@@ -13,3 +13,17 @@
 | 拼接       | - `let newArr = arr.concat(anotherArr);` | - `combined_lst = lst + another_lst`<br>- `lst.extend(another_lst)` |
 
 此表格总结了两种语言在基本数组/列表操作上的主要命令和语法，帮助直观对比它们之间的异同。
+
+
+## 解构
+```python
+l1 = [1,2,3]
+l2 = [*l1, 4]
+# l2 = [1,2,3,4]
+```
+
+```javascript
+let l1 = [1,2,3]
+let l2 = [...l1, 4]
+// l2 = [1,2,3,4]
+```
