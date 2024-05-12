@@ -83,7 +83,7 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 完成上述步骤后，你可以通过运行一个简单的pip命令来验证是否已成功恢复到默认源：
 
 ```bash
-pip config get-value global.index-url
+pip config get global.index-url
 ```
 
 如果输出显示为`https://pypi.org/simple`，则表示你已成功恢复到了默认的PyPI源。
