@@ -37,19 +37,3 @@ image.save("astronaut_rides_horse.png")
 ## Civitai
 在使用 Civitai 网站时，很重要的一步是找到并且选择适合自己的模型。
 你需要仔细查看模型的类型和使用方式，以确保正确地安装和配置模型，这样 WebUI 才能顺利调用它。
-
-
-## Midjourney：风头无两的画师
-Midjourney 也是 AI 绘画的一大杀器。不同于 WebUI，我们可以在聊天应用程序 Discord 中使用 Midjourney，
-不需要本地 GPU 资源，也不需要安装任务 WebUI 类的工具。
-
-相比前面的两个开源社区，Midjourney 模型 AI 绘画的效果在精致度、图像文本关联性上都有更显著的优势,但是Midjourney收费。
-
-Midjourney 描述词 1，创作一幅温馨真挚微笑的年轻亚洲女孩的写实肖像画。
-```
-Create a realistic portrait of a young asian girl with a warm, genuine smile --ar 2:3Midjourney 
-```
-描述词 2，我们要求图像里避免出现眼镜和卷发，而且对写实、年轻和微笑都设置了不同的文本权重。
-```
-Create a realistic::-1.0 portrait of a young::1.5 asian girl with a warm, genuine smile::1.4 --no glasses curly hair --ar 2:3
-```
