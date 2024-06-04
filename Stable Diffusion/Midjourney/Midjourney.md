@@ -9,7 +9,7 @@ Midjourney 也是 AI 绘画的一大杀器。不同于 WebUI，我们可以在�
 
 Midjourney 描述词 1，创作一幅温馨真挚微笑的年轻亚洲女孩的写实肖像画。
 ```
-Create a realistic portrait of a young asian girl with a warm, genuine smile --ar 2:3Midjourney 
+Create a realistic portrait of a young asian girl with a warm, genuine smile --ar 2:3 
 ```
 描述词 2，我们要求图像里避免出现眼镜和卷发，而且对写实、年轻和微笑都设置了不同的文本权重。
 ```
