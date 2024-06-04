@@ -43,7 +43,7 @@ prompt 语句中使用 --iw 命令可以控制新图片与参考图的相似程�
 Midjourney 可以轻松地将这些方法借鉴过来，在自己的海量优质数据上进行模型训练的任务。
 - 第三个启发是聚焦与坚持。Midjourney 的成功也证明了做一个行业第一的 AI 绘画模型，不需要上百人的算法团队。真正需要做的，是聚焦好 AI 绘画这一件事，持之以恒地收集数据和验证新方案。
 
-<~~br~~>
+<br>
 
 ## MidJourney教程
 https://learningprompt.wiki/docs/midjourney-learning-path
