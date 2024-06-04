@@ -43,5 +43,24 @@ In simple terms, you can think of these parameters as official fixed prompt temp
 - 3:2 is often used for photo printing
 - 7:4 is a ratio similar to HD TV or smartphone screens
 
+<br>
 
+## --seed
+在Midjourney图像生成中，`--seed` 参数扮演了一个关键角色，用于控制生成图像的随机性并确保结果的可复现性。具体来说，它的作用包括：
+
+1. **初始化随机性**：`--seed` 是一个整数值，用于设定生成图像时所用随机数生成器的起点。这个值影响图像生成过程中的初始噪声图案，类似于电视屏幕上的静态噪声，是生成图像的基础。
+
+2. **生成相似图像**：当你提供一个具体的 `--seed` 值，Midjourney 将利用这个值来确定图像生成的起点，从而使得使用相同文本提示（prompt）、模型版本以及其他设置的情况下，能够生成具有相似构图、颜色和细节的图像。这对于创造一系列风格或主题一致的图像特别有用。
+
+3. **可复现性**：如果想要在未来重现完全相同的生成结果，记录下之前使用的 `seed` 值至关重要。这使得艺术家或创作者能够在不同的时间点回到相同的创意起点，无论是为了继续编辑还是分享特定的视觉效果。
+
+4. **范围与限制**：`--seed` 接受的整数范围通常是 0 到 4294967295。不同模型版本对 `seed` 的响应可能有所不同，例如，模型版本1、2、3、test和testp通常会生成相似但不完全相同的图像，而版本4、5和niji可能会因为seed相同而产生几乎完全相同的图像。
+
+5. **未指定时的随机性**：如果不指定 `--seed`，Midjourney 会自动分配一个随机种子，导致每次生成的图像都不同，增加了结果的多样性。
+
+综上所述，通过精细调整 `--seed` 参数，用户可以在探索创意空间的同时，保持对生成内容一定程度的控制和可复现性。
+
+<br>
+
+## reference
 https://learningprompt.wiki/docs/midjourney/mj-tutorial-basics/midjourney-common-parameters
